@@ -6,10 +6,18 @@ plugins {
 }
 
 group 'dustin.Sanchez'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 repositories {
     mavenCentral()
+    maven {
+        url myMavenRepoReadUrl
+
+        credentials {
+            username myMavenRepoReadUsername
+            password myMavenRepoReadPassword
+        }
+    }
 }
 
 ext {
@@ -34,7 +42,7 @@ javafx {
 }
 
 dependencies {
-
+    implementation 'dustin.Sanchez:Fitxers:2.3'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

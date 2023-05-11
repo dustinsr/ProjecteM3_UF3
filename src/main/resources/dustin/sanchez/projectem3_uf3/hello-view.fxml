@@ -1,16 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="dustin.sanchez.projectem3_uf3.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<VBox alignment="CENTER" prefHeight="368.0" prefWidth="577.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="dustin.sanchez.projectem3_uf3.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <TabPane prefHeight="333.0" prefWidth="508.0" tabClosingPolicy="UNAVAILABLE">
+     <tabs>
+       <Tab text="Entrada de producte">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="299.0" prefWidth="537.0">
+                  <children>
+                      <Button layoutX="91.0" layoutY="231.0" onAction="#Guarda" text="Guarda" />
+                     <Line endX="-100.0" endY="264.0" layoutX="354.0" layoutY="1.0" startX="-100.0" />
+                     <Label layoutX="380.0" layoutY="28.0" text="Nom" />
+                     <Label layoutX="375.0" layoutY="84.0" text="Preu €" />
+                     <Label layoutX="362.0" layoutY="140.0" text="Descripcio" />
+                     <Label layoutX="347.0" layoutY="203.0" text="Data Caducitat" />
+                     <TextField fx:id="NomTextEscrit" layoutX="287.0" layoutY="51.0" prefHeight="24.0" prefWidth="230.0" />
+                     <TextField fx:id="PreuTextEscrit" layoutX="288.0" layoutY="109.0" prefHeight="24.0" prefWidth="229.0" />
+                     <DatePicker fx:id="DCTextEscrit" layoutX="289.0" layoutY="231.0" prefHeight="24.0" prefWidth="227.0" />
+                     <TextField fx:id="DescripcioTextEscrit" layoutX="286.0" layoutY="163.0" prefHeight="24.0" prefWidth="230.0" />
+                  
+                      <Label fx:id="NomText" layoutX="28.0" layoutY="84.0" prefHeight="16.0" prefWidth="210.0" />
+                     <Label fx:id="PreuText" layoutX="28.0" layoutY="101.0" prefHeight="16.0" prefWidth="138.0" />
+                     <TextField fx:id="DescripcioText" editable="false" layoutX="28.0" layoutY="128.0" prefHeight="57.0" prefWidth="191.0" />
+                     <Label fx:id="DataCaducitatText" layoutX="28.0" layoutY="203.0" />
+                     <Button layoutX="354.0" layoutY="266.0" mnemonicParsing="false" onAction="#BTAlmacenar" text="Almacena" />
+                  </children>
+               </AnchorPane>
+         </content>
+       </Tab>
+       <Tab text="Sortida de producte">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                     <Line endX="-24.0" endY="191.0" layoutX="278.0" layoutY="77.0" startX="-24.0" startY="-77.0" />
+                  </children>
+               </AnchorPane>
+         </content>
+       </Tab>
+     </tabs>
+   </TabPane>
 </VBox>
