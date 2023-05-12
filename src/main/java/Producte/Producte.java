@@ -17,6 +17,7 @@ public class Producte {
 
     //<editor-fold desc="PROPIETATS">
     // variables
+    private int id; //Identificador producto
     private String nom;
     private int preu;
     private String descripcio;
@@ -27,7 +28,9 @@ public class Producte {
 
 
     static final String fitxer = "productes.csv";
+    static final String fitxerBin = "productes.dat";
     static final Fitxers f = new Fitxers();
+    //static final Fitxers f = new Fitxers(fitxerBin);
 
 
     //<editor-fold desc="CONSTRUCTORS">
@@ -37,6 +40,7 @@ public class Producte {
      * Instantiates a new Persona.
      */
     public Producte() {
+        this.id=System.identityHashCode(this);
     }
 
     /**
@@ -48,6 +52,8 @@ public class Producte {
      * @param data    the sou
      */
     public Producte(String nom, int preu, String descripcio, String data) {
+        this.id=System.identityHashCode(this);
+
         this.nom = nom;
         this.preu = preu;
         this.descripcio = descripcio;
@@ -98,6 +104,11 @@ public class Producte {
         f.escriuTextFitxer(fitxer, this.toString(), true);
 
     }
+
+    /*
+    public void guardaProductse() {
+        f.escriuObjecteFitxer(this, true);
+    } */
 
 
     /**
@@ -178,7 +189,30 @@ public class Producte {
      * Retorna persones persona [ ].
      *
      * @return the persona [ ]
+     *
      */
+
+    /*
+
+    public List<Producte> retornaLlistaProductes() throws IOException, InterruptedException {
+        List<Object> objectes = f.retornaFitxerObjectenllista();
+        List<Producte> productestotal = converteixPErsona;
+        return productestotal;
+    } */
+
+   /* public List<Producte> retornaLlistaProductes() throws IOException, InterruptedException {
+        List <Producte> lProductes = new ArrayList<>();
+
+        for (Object obj: objectes)
+    }
+
+   public List<Producte> cercar(String cercar) {
+        Lista<Producte> productes = retornaLlistaProductes();
+    } */
+
+
+
+
     public List<Producte> retornaLlistaProductes() throws IOException, InterruptedException {
 
         String productes = f.retornaContingutFitxer(fitxer,"UTF-8");
@@ -212,6 +246,34 @@ public class Producte {
      * @throws IOException Excepció d'Entrada/Sortida
      * @see #retornaProductes()
      */
+
+   /* public void eliminaPersona(String cognom, int numProducte) throws IOException, InterruptedException {
+        List<Producte> productes = retornaLlistaProductes();
+        boolean afegir = false;
+        boolean trobat=false;
+        int contaProducte = 0;
+
+        for (int i = 0; i < productes.size(); i++) {
+
+            if (!productes.get(i).getNom().equals(cognom) || trobat) {
+                f.escriuObjecteFitxer(productes.get(i), afegir);
+                afegir = true;
+            } else {
+                if (contaProducte == numProducte)
+                    trobat = true;
+                else {
+                    f.escriuObjecteFitxer(productes.get(i), afegir);
+                    afegir = true;
+                }
+                contaProducte++;
+            }
+
+        }
+
+    }
+    */
+
+
     public void eliminaPersona(String cognom) throws IOException, InterruptedException {
         Producte[] persones = retornaProductes();
         boolean afegir = false;
