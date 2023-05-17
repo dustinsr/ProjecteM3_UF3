@@ -123,20 +123,20 @@ public class Producte {
     /**
      * Cercar per cognom string.
      *
-     * @param cognomACercar the cognom a cercar
+     * @param nomACercar the cognom a cercar
      * @return the string
      */
     // cercar per cogonom
     //Para buscar por nom, preu, descripcio o data
-    public List<Producte> cercarPerCognom(String cognomACercar) throws IOException, InterruptedException {
-        List<String> persones = f.retornaContingutFitxer(fitxer);
-        String cognom;
+    public List<Producte> cercarPerNom(String nomACercar) throws IOException, InterruptedException {
+        List<String> productes = f.retornalistaContingutFitxer(fitxer);
+        String nom;
         List<Producte> productesTrobades = new ArrayList<>();
 
-        for (String fila : persones) {
+        for (String fila : productes) {
             String[] dades = fila.split(";");
-            cognom = dades[1];
-            if (cognom.equals(cognomACercar)) {
+            nom = dades[0];
+            if (nom.equalsIgnoreCase(nomACercar)) {
                 Producte pers = new Producte(
                         dades[0],
                         Integer.parseInt(dades[1]),
@@ -151,7 +151,74 @@ public class Producte {
         return productesTrobades;
     }
 
+    public List<Producte> cercarPerPreu(String preuACercar) throws IOException, InterruptedException {
+        List<String> productes = f.retornalistaContingutFitxer(fitxer);
+        String preu;
+        List<Producte> productesTrobades = new ArrayList<>();
 
+        for (String fila : productes) {
+            String[] dades = fila.split(";");
+            preu = dades[1];
+            if (preu.equals(preuACercar)) {
+                Producte pers = new Producte(
+                        dades[0],
+                        Integer.parseInt(dades[1]),
+                        dades[2],
+                        dades[3]
+                );
+
+                productesTrobades.add(pers);
+            }
+        }
+
+        return productesTrobades;
+    }
+
+    public List<Producte> cercarPerDescripcio(String descripcioACercar) throws IOException, InterruptedException {
+        List<String> productes = f.retornalistaContingutFitxer(fitxer);
+        String descripcio;
+        List<Producte> productesTrobades = new ArrayList<>();
+
+        for (String fila : productes) {
+            String[] dades = fila.split(";");
+            descripcio = dades[2];
+            if (descripcio.equalsIgnoreCase(descripcioACercar)) {
+                Producte pers = new Producte(
+                        dades[0],
+                        Integer.parseInt(dades[1]),
+                        dades[2],
+                        dades[3]
+                );
+
+                productesTrobades.add(pers);
+            }
+        }
+
+        return productesTrobades;
+    }
+
+    public List<Producte> cercarPerData(String dataACercar) throws IOException, InterruptedException {
+        List<String> productes = f.retornalistaContingutFitxer(fitxer);
+        String data;
+        List<Producte> productesTrobades = new ArrayList<>();
+
+        for (String fila : productes) {
+            String[] dades = fila.split(";");
+            data = dades[3];
+            if (data.equalsIgnoreCase(dataACercar)) {
+                Producte pers = new Producte(
+                        dades[0],
+                        Integer.parseInt(dades[1]),
+                        dades[2],
+                        dades[3]
+                );
+
+                productesTrobades.add(pers);
+            }
+        }
+
+        return productesTrobades;
+    }
     /**
      * Retorna persones persona [ ].
      *

@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,15 @@ public class HelloController {
     @FXML
     private Label LBTrue;
     @FXML
-    private TextField CodiNom;
+    private TextField CercaNom;
+    @FXML
+    private TextField CercaPreu;
+    @FXML
+    private TextField CercaDescripcio;
+    @FXML
+    private DatePicker CercaData;
+    @FXML
+    private TextField DescripcioTrobat;
     @FXML
     private Button BPrimer;
     @FXML
@@ -41,8 +50,12 @@ public class HelloController {
     private Button BDespres;
     @FXML
     private Button BUltim;
-
-
+    @FXML
+    private Label NomTrobat;
+    @FXML
+    private Label PreuTrobat;
+    @FXML
+    private Label DataTrobat;
 
 
     static Producte p = new Producte();
@@ -148,10 +161,115 @@ public class HelloController {
     } */
 
 
-    public void Cerca() {
 
 
-    }
+
+        public void Cerca() throws IOException, InterruptedException {
+
+            String nom = CercaNom.getText();
+            String preu = CercaPreu.getText();
+            String descripcio = CercaDescripcio.getText();
+            String data = CercaData.getValue() != null ? CercaData.getValue().toString() : "";
+
+            List<Producte> llista = p.cercarPerNom(nom);
+            List<Producte> llista2 = p.cercarPerPreu(preu);
+            List<Producte> llista3 = p.cercarPerDescripcio(descripcio);
+            List<Producte> llista4 = p.cercarPerData(data);
+
+            if (llista.isEmpty() && llista2.isEmpty() && llista3.isEmpty() && llista4.isEmpty()) {
+                Alert al = new Alert(Alert.AlertType.WARNING);
+                al.setTitle("ERROR");
+                al.setContentText("Aquest producte no existeix");
+                al.show();
+            } else {
+                Producte prod = null;
+                if (!llista.isEmpty()) {
+                    prod = llista.get(0);
+                } else if (!llista2.isEmpty()) {
+                    prod = llista2.get(0);
+                } else if (!llista3.isEmpty()) {
+                    prod = llista3.get(0);
+                } else if (!llista4.isEmpty()) {
+                    prod = llista4.get(0);
+                }
+
+                if (prod != null) {
+                    NomTrobat.setText(prod.getNom());
+                    PreuTrobat.setText(String.valueOf(prod.getPreu()));
+                    DescripcioTrobat.setText(prod.getDescripcio());
+                    String fechaStr = prod.getData();
+                    LocalDate fecha = LocalDate.parse(fechaStr);
+                    DataTrobat.setText(String.valueOf(fecha));
+                    mostraBotons_Direccio(true);
+                }
+            }
+        }
+
+
+
+
+        /*Caso Preu
+        if (llista2.isEmpty()) {
+            Alert al = new Alert(Alert.AlertType.WARNING);
+            al.setTitle("ERROR");
+            al.setContentText("Aquesta producte no existeix");
+            al.show();
+        } else {
+            Producte prod2 = llista2.get(0);
+            NomTrobat.setText(prod2.getNom());
+            PreuTrobat.setText(String.valueOf(prod2.getPreu()));
+            DescripcioTrobat.setText(prod2.getDescripcio());
+            String fechaStr2 = prod2.getData();
+            LocalDate fecha2 = LocalDate.parse(fechaStr2);
+            DataTrobat.setText(String.valueOf(fecha2));
+            mostraBotons_Direccio(false);
+        }
+
+*/
+
+        /*
+        //Caso Descripcio
+        if (llista3.isEmpty()) {
+            Alert al = new Alert(Alert.AlertType.WARNING);
+            al.setTitle("ERROR");
+            al.setContentText("Aquesta producte no existeix");
+            al.show();
+        } else {
+
+            Producte prod3 = llista3.get(0);
+            NomTrobat.setText(prod3.getNom());
+            PreuTrobat.setText(String.valueOf(prod3.getPreu()));
+            DescripcioTrobat.setText(prod3.getDescripcio());
+            String fechaStr3 = prod3.getData();
+            LocalDate fecha3 = LocalDate.parse(fechaStr3);
+            DataTrobat.setText(String.valueOf(fecha3));
+            mostraBotons_Direccio(false); }
+
+
+
+        /*
+        //Caso Data
+        if (llista4.isEmpty()) {
+            Alert al = new Alert(Alert.AlertType.WARNING);
+            al.setTitle("ERROR");
+            al.setContentText("Aquesta producte no existeix");
+            al.show();
+        } else {
+
+            Producte prod4 = llista4.get(0);
+            NomTrobat.setText(prod4.getNom());
+            PreuTrobat.setText(String.valueOf(prod4.getPreu()));
+            DescripcioTrobat.setText(prod4.getDescripcio());
+            String fechaStr4 = prod4.getData();
+            LocalDate fecha4 = LocalDate.parse(fechaStr4);
+            DataTrobat.setText(String.valueOf(fecha4));
+            mostraBotons_Direccio(false);
+        } */
+
+
+
+
+
 
     public void Treu() {
     }

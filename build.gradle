@@ -42,7 +42,7 @@ javafx {
 }
 
 dependencies {
-    implementation 'dustin.Sanchez:Fitxers:2.3'
+    implementation 'dustin.Sanchez:Fitxers:2.4'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
