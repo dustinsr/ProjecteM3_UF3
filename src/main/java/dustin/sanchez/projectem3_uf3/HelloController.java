@@ -1,18 +1,19 @@
 package dustin.sanchez.projectem3_uf3;
 
 import Producte.Producte;
-import dustin.Sanchez.Fitxers;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import pkgFitxers.Fitxers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HelloController {
-
+    //<editor-fold desc="FXML">
+    @FXML
+    private Button BTGuarda;
     @FXML
     private TextField NomTextEscrit;
     @FXML
@@ -29,11 +30,42 @@ public class HelloController {
     private TextField DescripcioText;
     @FXML
     private Label DataCaducitatText;
+    @FXML
+    private Label LBTrue;
+    @FXML
+    private TextField CercaNom;
+    @FXML
+    private TextField CercaPreu;
+    @FXML
+    private TextField CercaDescripcio;
+    @FXML
+    private DatePicker CercaData;
+    @FXML
+    private TextField DescripcioTrobat;
+    @FXML
+    private Button BPrimer;
+    @FXML
+    private Button BAbans;
+    @FXML
+    private Button BDespres;
+    @FXML
+    private Button BUltim;
+    @FXML
+    private Label NomTrobat;
+    @FXML
+    private Label PreuTrobat;
+    @FXML
+    private Label DataTrobat;
+    //</editor-fold>
 
+    //<editor-fold desc="Variables Globales">
     static Producte p = new Producte();
     static Fitxers f = new Fitxers();
     static List<Producte> contingutFitxer;           // variable estàtica amb el contingut del fitxer
-    static String dir = ".dades";                     // no utilitzat el directori
+    static String dir = ".dades";
+    static private int numProductesCerca = 0;
+    static private List<Producte> llistaProductesCerca = new ArrayList<>();
+    //</editor-fold>
 
 
     /**

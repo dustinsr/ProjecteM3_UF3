@@ -1,15 +1,16 @@
 package Producte;
 
-import dustin.Sanchez.Fitxers;
+import pkgFitxers.Fitxers;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 /**
- * The type Persona.
+ * The type Producte.
  *
- * @author vicent Classe que implementa mètodes d'accés a fitxers i alguns mèetodes per utilitzar l'Agenda
+ * @author Dustin, Bryan777s  Classe que implementa mètodes d'accés a fitxers i alguns mèetodes per utilitzar l'Nevera
  * @since 3.33
  */
 public class Producte {
@@ -155,18 +156,17 @@ public class Producte {
         return f.retornaContingutFitxer(fitxer,"UTF-8");
     }
 
+    //<editor-fold desc=" cercar per nom, preu, descripcio o data">
     /**
-     * Cercar per cognom string.
+     * Cercar per nom string.
      *
      * @param nomACercar the cognom a cercar
      * @return the string
      * @throws IOException          the io exception
      * @throws InterruptedException the interrupted exception
      */
-// cercar per cogonom
-    //Para buscar por nom, preu, descripcio o data
     public List<Producte> cercarPerNom(String nomACercar) throws IOException, InterruptedException {
-        List<String> productes = f.retornalistaContingutFitxer(fitxer);
+        List<String> productes = f.retornaContingutFitxerLlista(fitxer);
         String nom;
         List<Producte> productesTrobades = new ArrayList<>();
 
@@ -197,7 +197,7 @@ public class Producte {
      * @throws InterruptedException the interrupted exception
      */
     public List<Producte> cercarPerPreu(String preuACercar) throws IOException, InterruptedException {
-        List<String> productes = f.retornalistaContingutFitxer(fitxer);
+        List<String> productes = f.retornaContingutFitxerLlista(fitxer);
         String preu;
         List<Producte> productesTrobades = new ArrayList<>();
 
@@ -228,7 +228,7 @@ public class Producte {
      * @throws InterruptedException the interrupted exception
      */
     public List<Producte> cercarPerDescripcio(String descripcioACercar) throws IOException, InterruptedException {
-        List<String> productes = f.retornalistaContingutFitxer(fitxer);
+        List<String> productes = f.retornaContingutFitxerLlista(fitxer);
         String descripcio;
         List<Producte> productesTrobades = new ArrayList<>();
 
@@ -259,7 +259,7 @@ public class Producte {
      * @throws InterruptedException the interrupted exception
      */
     public List<Producte> cercarPerData(String dataACercar) throws IOException, InterruptedException {
-        List<String> productes = f.retornalistaContingutFitxer(fitxer);
+        List<String> productes = f.retornaContingutFitxerLlista(fitxer);
         String data;
         List<Producte> productesTrobades = new ArrayList<>();
 
@@ -315,7 +315,9 @@ public class Producte {
         }
         return arrayProductes;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="descartado">
     /*
 
     public List<Producte> retornaLlistaProductes() throws IOException, InterruptedException {
@@ -333,7 +335,7 @@ public class Producte {
    public List<Producte> cercar(String cercar) {
         Lista<Producte> productes = retornaLlistaProductes();
     } */
-
+    //</editor-fold>
 
     /**
      * Retorna persones persona [ ].
@@ -367,9 +369,6 @@ public class Producte {
         return llista;
     }
 
-
-
-
    /* public void eliminaPersona(String cognom, int numProducte) throws IOException, InterruptedException {
         List<Producte> productes = retornaLlistaProductes();
         boolean afegir = false;
@@ -399,20 +398,20 @@ public class Producte {
     /**
      * Elimina un producte del fitxer a partir del seu nom.
      *
-     * @param cognom cognom de la persona a eliminar
+     * @param nom nom de la persona a eliminar
      * @throws IOException          Excepció d'Entrada/Sortida
      * @throws InterruptedException the interrupted exception
      * @see #retornaProductes() #retornaProductes()
      */
-    public void eliminaPersona(String cognom) throws IOException, InterruptedException {
-        Producte[] persones = retornaProductes();
+    public void eliminaProducte(String nom) throws IOException, InterruptedException {
+        Producte[] productes = retornaProductes();
         boolean afegir = false;
         boolean trobat=false;
 
-        for (int i = 0; i < persones.length; i++) {
+        for (int i = 0; i < productes.length; i++) {
             // sobreescrivim el fitxer excloent la persona a eliminar
-            if (!persones[i].getNom().equals(cognom) || trobat) {
-                f.escriuTextFitxer(fitxer, persones[i].toString(), afegir);
+            if (!productes[i].getNom().equals(nom) || trobat) {
+                f.escriuTextFitxer(fitxer, productes[i].toString(), afegir);
                 afegir = true;
             }else{
                 trobat=true;        // així sols eliminem una sola persona amb el cognom i no totes
@@ -426,16 +425,16 @@ public class Producte {
      * @throws IOException          the io exception
      * @throws InterruptedException the interrupted exception
      */
-    public void modificarPersona() throws IOException, InterruptedException {
-        Producte[] persones = retornaProductes();
+    public void modificarProducte() throws IOException, InterruptedException {
+        Producte[] productes = retornaProductes();
         boolean afegir = false;
         boolean trobat = false;
 
-        for (int i = 0; i < persones.length; i++) {
+        for (int i = 0; i < productes.length; i++) {
             // sobreescrivim el fitxer excloent la persona a modificar
-            if (!persones[i].getNom().equals(this.nom) &&
-                    !persones[i].getNom().equals(this.nom) || trobat) {
-                f.escriuTextFitxer(fitxer, persones[i].toString(), afegir);
+            if (!productes[i].getNom().equals(this.nom) &&
+                    !productes[i].getNom().equals(this.nom) || trobat) {
+                f.escriuTextFitxer(fitxer, productes[i].toString(), afegir);
                 afegir = true;
             } else {
                 f.escriuTextFitxer(fitxer, this.toString(), afegir);
