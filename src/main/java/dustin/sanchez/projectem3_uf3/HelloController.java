@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HelloController {
+
     //<editor-fold desc="FXML">
     @FXML
     private Button BTGuarda;
@@ -103,6 +104,7 @@ public class HelloController {
         // formatem les dades de les persones de manera més amigable
         if (f.existeixIO(p.getFitxer())) {
             actualitzaPantalla();
+            p.alertaCaducitat();
         }
     }
 
@@ -131,33 +133,39 @@ public class HelloController {
         String descripcio = DescripcioTextEscrit.getText();
         String data = DCTextEscrit.getValue().toString();
 
-
+        if (nom.length() >= 1 && preu >= 1 && descripcio.length() >= 1 && data.length() >= 1)
         // Ens assegurem que tots els camps estàn plens
         if (
                 NomTextEscrit.getText().length() >= 1 &&
                         PreuTextEscrit.getText().length() >= 1 &&
                         DescripcioTextEscrit.getText().length() >= 1 &&
-                        DCTextEscrit.getText().length() >= 1
+                        DCTextEscrit.getValue().lengthOfYear() >= 1
         ) {
 
+            // Verificar que tots els camps estiguin plens
+            if (nom.length() >= 1 && preu >= 1 && descripcio.length() >= 1 && data.length() >= 1);
+
             // Agafem els camps dels TextFields
-            String nom = TFNom.getText();
+/*            String nom = TFNom.getText();
             String cognom = TFCognom.getText();
             int edat = Integer.parseInt(TFEdat.getText());
-            double sou = Double.parseDouble(TFSou.getText());
+            double sou = Double.parseDouble(TFSou.getText());*/
 
             // Construïm una persona amb aquests camps
-            Persona pers = new Persona(nom, cognom, edat, sou);
+                //Persona pers = new Persona(nom, cognom, edat, sou);
+            Producte produc = new Producte(nom,preu,descripcio,data);
 
             // Agafem el text del botó (per comprovar si guardem o modifiquem)
-            String textBoto = BTGuardaPersona.getText();
+            String textBoto = BTGuarda.getText();
 
             // si volem modificar
             if (!textBoto.equals("Guarda")) {
-                BTGuardaPersona.setText("Guarda");
-                pers.modificarPersona();
+                BTGuarda.setText("Guarda");
+                //produc.modificarPersona();
+                produc.modificarProducte();
             } else {                    // si volem guardar
-                pers.guardaPersona();
+                //produc.guardaPersona();
+                produc.guardaProducte();
             }
             netejaCamps();              // reiniciem els TextFields
             actualitzaPantalla();       // recarreguem el fitxer al TextArea
@@ -191,6 +199,7 @@ public class HelloController {
 
     }
 
+    //<editor-fold desc="data caducitat alerta descart">
     /*public class AlertaCaducitatAliments {
         public static void main(String[] args) {
             List<Aliment> llistaAliments = obtenirLlistaAliments(); // obtenim la llista d'aliments de la font de dades
@@ -225,6 +234,10 @@ public class HelloController {
 
         // constructor i getters i setters
     }*/
+    //</editor-fold>
+
+
+
 
 
 

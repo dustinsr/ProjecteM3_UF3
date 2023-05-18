@@ -1,10 +1,16 @@
 package Producte;
 
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 import pkgFitxers.Fitxers;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javafx.application.Application.launch;
 
 
 /**
@@ -444,6 +450,26 @@ public class Producte {
         }
     }
 
+    public void alertaCaducitat() {
+        // Obtener la fecha actual
+        LocalDate fechaActual = LocalDate.now();
+
+        // Obtener la fecha de caducidad del producto
+        LocalDate fechaCaducidad = LocalDate.parse(data);
+
+        // Calcular la diferencia de días entre la fecha actual y la fecha de caducidad
+        long diasRestantes = ChronoUnit.DAYS.between(fechaActual, fechaCaducidad);
+
+        // Verificar si quedan 3 días o menos para la caducidad
+        if (diasRestantes <= 3 && diasRestantes >= 0) {
+            // Mostrar la alerta
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Alerta de Caducitat");
+            alert.setHeaderText("Producte a punt de caducar");
+            alert.setContentText("El producte caducarà en " + diasRestantes + " dies.");
+            alert.showAndWait();
+        }
+    }
 
     @Override
     public String toString() {
