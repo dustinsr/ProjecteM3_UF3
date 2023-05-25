@@ -44,6 +44,8 @@ javafx {
 dependencies {
     implementation 'bryan777s:Fitxers:2.1'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
